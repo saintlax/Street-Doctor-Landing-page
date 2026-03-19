@@ -13,6 +13,12 @@ import {
 
 const StreetDoctorLanding = () => {
   const [activeTab, setActiveTab] = useState('patient');
+  const WHATSAPP_NUMBER = "+15551667174";
+
+  const openWhatsApp = () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER.replace(/[^0-9]/g, '')}`;
+    window.open(url, '_blank');
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
@@ -29,7 +35,10 @@ const StreetDoctorLanding = () => {
           <a href="#features" className="hover:text-blue-600 transition">AI Engine</a>
           <a href="#join" className="hover:text-blue-600 transition">Join the Network</a>
         </div>
-        <button className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-full font-semibold flex items-center gap-2 transition shadow-md">
+        <button 
+          onClick={openWhatsApp}
+          className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-full font-semibold flex items-center gap-2 transition shadow-md"
+        >
           <MessageSquare size={18} /> Open WhatsApp
         </button>
       </nav>
@@ -47,7 +56,10 @@ const StreetDoctorLanding = () => {
           AI-powered triage, instant specialist matching within 50km, and medications delivered to your door. All through a single chat.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg">
+          <button 
+            onClick={openWhatsApp}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg"
+          >
             Start a Consultation
           </button>
           <button className="bg-white border-2 border-slate-200 hover:border-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition">
