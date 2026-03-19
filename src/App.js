@@ -20,6 +20,10 @@ const StreetDoctorLanding = () => {
     window.open(url, '_blank');
   };
 
+  const comingSoonAlert = () => {
+    alert("This feature is coming soon!");
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
       {/* Navigation */}
@@ -57,12 +61,15 @@ const StreetDoctorLanding = () => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button 
-            onClick={openWhatsApp}
+            onClick={comingSoonAlert}
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg"
           >
             Start a Consultation
           </button>
-          <button className="bg-white border-2 border-slate-200 hover:border-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition">
+          <button 
+            onClick={comingSoonAlert}
+            className="bg-white border-2 border-slate-200 hover:border-blue-600 px-8 py-4 rounded-xl font-bold text-lg transition"
+          >
             I am a Doctor
           </button>
         </div>
@@ -161,12 +168,12 @@ const StreetDoctorLanding = () => {
           <div className="p-8 bg-blue-50 rounded-2xl text-left border border-blue-100">
             <h3 className="font-bold text-xl mb-4 text-blue-800">For Independent Doctors</h3>
             <p className="text-slate-700 mb-6">Set your own fees, work from anywhere, and let the AI handle your paperwork.</p>
-            <button className="flex items-center gap-2 font-bold text-blue-600 hover:underline">Register Practice <ChevronRight size={16}/></button>
+            <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-blue-600 hover:underline">Register Practice <ChevronRight size={16}/></button>
           </div>
           <div className="p-8 bg-slate-100 rounded-2xl text-left border border-slate-200">
             <h3 className="font-bold text-xl mb-4 text-slate-800">For Hospitals</h3>
             <p className="text-slate-700 mb-6">Automate your triage and direct local patients to your best specialists.</p>
-            <button className="flex items-center gap-2 font-bold text-slate-700 hover:underline">Onboard Hospital <ChevronRight size={16}/></button>
+            <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-slate-700 hover:underline">Onboard Hospital <ChevronRight size={16}/></button>
           </div>
         </div>
       </section>
