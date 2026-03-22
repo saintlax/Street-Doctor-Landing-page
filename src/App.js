@@ -8,7 +8,8 @@ import {
   ChevronRight, 
   CreditCard, 
   Activity,
-  UserPlus
+  UserPlus,
+  Watch // Added for the new feature
 } from 'lucide-react';
 
 const StreetDoctorLanding = () => {
@@ -57,7 +58,7 @@ const StreetDoctorLanding = () => {
           <span className="text-blue-600">On WhatsApp.</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-          AI-powered triage, instant specialist matching within 50km, and medications delivered to your door. All through a single chat.
+          AI-powered triage, **real-time smartwatch monitoring**, and specialist matching within 50km. All through a single chat.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button 
@@ -83,30 +84,31 @@ const StreetDoctorLanding = () => {
             <div className="text-slate-500 font-medium">Local Specialist Radius</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-blue-600">AI-Verified</div>
-            <div className="text-slate-500 font-medium">Severity Triage (Critical-Routine)</div>
+            <div className="text-3xl font-bold text-blue-600">LIVE</div>
+            <div className="text-slate-500 font-medium">Smart Watch Vitals Sync</div>
           </div>
           <div>
-            <div className="text-3xl font-bold text-blue-600">1-Click</div>
-            <div className="text-slate-500 font-medium">Doctor Insight Relay</div>
+            <div className="text-3xl font-bold text-blue-600">AI-Verified</div>
+            <div className="text-slate-500 font-medium">Severity Triage</div>
           </div>
         </div>
       </section>
 
       {/* How It Works (The Triangulation Process) */}
       <section id="how-it-works" className="py-20 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-16 text-slate-800">How Street Doctor Works</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <h2 className="text-3xl font-bold text-center mb-16 text-slate-800">The Connected Care Loop</h2>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {[
-            { icon: <MapPin className="text-red-500" />, title: "Triangulate", desc: "Share your location on WhatsApp to find the closest doctor." },
-            { icon: <Activity className="text-orange-500" />, title: "Triage", desc: "AI assesses severity and summarizes your history for the doctor." },
-            { icon: <CreditCard className="text-green-500" />, title: "Secure Pay", desc: "Pay the consultation fee directly via chat to start." },
-            { icon: <Zap className="text-blue-500" />, title: "Resolve", desc: "Get a second opinion, prescription, and doorstep delivery." }
+            { icon: <Watch className="text-purple-500" />, title: "Sync", desc: "Wear your Street Doctor watch to track vitals 24/7." },
+            { icon: <MapPin className="text-red-500" />, title: "Triangulate", desc: "Share location via WhatsApp to find nearby doctors." },
+            { icon: <Activity className="text-orange-500" />, title: "Triage", desc: "AI combines your watch data with symptoms for a summary." },
+            { icon: <CreditCard className="text-green-500" />, title: "Secure Pay", desc: "Pay the consultation fee directly via chat." },
+            { icon: <Zap className="text-blue-500" />, title: "Resolve", desc: "Get a prescription or doorstep delivery instantly." }
           ].map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+            <div key={index} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
               <div className="mb-4 bg-slate-50 w-12 h-12 flex items-center justify-center rounded-xl">{item.icon}</div>
-              <h3 className="font-bold text-xl mb-2">{item.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="font-bold text-lg mb-2">{item.title}</h3>
+              <p className="text-slate-600 text-xs leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -119,10 +121,17 @@ const StreetDoctorLanding = () => {
             <h2 className="text-3xl font-bold mb-6 italic text-blue-400">The Street Doctor AI Engine</h2>
             <ul className="space-y-6">
               <li className="flex gap-4">
+                <Watch className="text-orange-400 shrink-0" />
+                <div>
+                  <h4 className="font-bold text-lg italic">Proactive Bio-Monitoring</h4>
+                  <p className="text-slate-400">Doctors receive alerts if your smart watch detects abnormal heart rates or O2 levels.</p>
+                </div>
+              </li>
+              <li className="flex gap-4">
                 <ShieldCheck className="text-green-400 shrink-0" />
                 <div>
                   <h4 className="font-bold text-lg italic">Clinical Second Opinion</h4>
-                  <p className="text-slate-400">Real-time diagnostic suggestions for doctors to ensure 100% accuracy.</p>
+                  <p className="text-slate-400">Real-time diagnostic suggestions for doctors based on live wearable data.</p>
                 </div>
               </li>
               <li className="flex gap-4">
@@ -132,13 +141,6 @@ const StreetDoctorLanding = () => {
                   <p className="text-slate-400">Turns long patient chats into structured medical notes in seconds.</p>
                 </div>
               </li>
-              <li className="flex gap-4">
-                <UserPlus className="text-purple-400 shrink-0" />
-                <div>
-                  <h4 className="font-bold text-lg italic">Automated Charting</h4>
-                  <p className="text-slate-400">Creates patient fields and records on voice or text command from the doctor.</p>
-                </div>
-              </li>
             </ul>
           </div>
           <div className="bg-slate-800 p-6 rounded-3xl border border-slate-700 shadow-2xl">
@@ -146,12 +148,15 @@ const StreetDoctorLanding = () => {
                <div className="w-3 h-3 rounded-full bg-red-500"></div>
                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-               <span className="text-xs text-slate-500 ml-2 italic underline italic">Internal Doctor Dashboard - AI Insights</span>
+               <span className="text-xs text-slate-500 ml-2 italic underline">Internal Doctor Dashboard - AI Insights</span>
              </div>
              <div className="space-y-4 font-mono text-sm">
-               <div className="text-red-400">SEVERITY: HIGH</div>
+               <div className="flex justify-between">
+                 <span className="text-red-400">SEVERITY: HIGH</span>
+                 <span className="text-orange-400 flex items-center gap-1 animate-pulse"><Watch size={14}/> LIVE: 112 BPM</span>
+               </div>
                <div className="text-blue-300">SUMMARY: Patient reports acute abdominal pain. Geolocation: 2.4km away.</div>
-               <div className="text-green-400">AI RECOMMENDATION: Rule out appendicitis. Suggested Labs: CBC, Ultrasound.</div>
+               <div className="text-green-400">AI RECOMMENDATION: Rule out appendicitis. Watch data shows rising core temp.</div>
                <div className="bg-blue-600 text-white p-2 rounded text-center mt-6 cursor-pointer hover:bg-blue-500 transition">
                  CLICK TO TRANSMIT TO PATIENT
                </div>
@@ -167,12 +172,12 @@ const StreetDoctorLanding = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-8 bg-blue-50 rounded-2xl text-left border border-blue-100">
             <h3 className="font-bold text-xl mb-4 text-blue-800">For Independent Doctors</h3>
-            <p className="text-slate-700 mb-6">Set your own fees, work from anywhere, and let the AI handle your paperwork.</p>
+            <p className="text-slate-700 mb-6">Access live patient vitals, set your own fees, and let the AI handle your paperwork.</p>
             <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-blue-600 hover:underline">Register Practice <ChevronRight size={16}/></button>
           </div>
           <div className="p-8 bg-slate-100 rounded-2xl text-left border border-slate-200">
             <h3 className="font-bold text-xl mb-4 text-slate-800">For Hospitals</h3>
-            <p className="text-slate-700 mb-6">Automate your triage and direct local patients to your best specialists.</p>
+            <p className="text-slate-700 mb-6">Remote monitoring for post-op patients to reduce readmission and automate triage.</p>
             <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-slate-700 hover:underline">Onboard Hospital <ChevronRight size={16}/></button>
           </div>
         </div>
