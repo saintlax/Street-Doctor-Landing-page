@@ -58,7 +58,7 @@ const StreetDoctorLanding = () => {
           <span className="text-blue-600">On WhatsApp.</span>
         </h1>
         <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
-          AI-powered triage, **real-time smartwatch monitoring**, and specialist matching within 50km. All through a single chat.
+          AI-powered triage, real-time smartwatch monitoring, and specialist matching within 50km. All through a single chat.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button 
