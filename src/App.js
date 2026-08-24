@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion'; // Ensure you run: npm install framer-motion
 import {
   MessageSquare, MapPin, Stethoscope, ShieldCheck,
-  Zap, ChevronRight, CreditCard, Activity, UserPlus, Watch
+  Zap, ChevronRight, CreditCard, Activity, UserPlus, Watch,
+  AlertTriangle, Navigation, Brain, Users, Calendar, Pill,
+  Building2, ClipboardList, DollarSign, BellRing, Heart
 } from 'lucide-react';
 
 const StreetDoctorLanding = () => {
@@ -13,11 +15,11 @@ const StreetDoctorLanding = () => {
     window.open(url, '_blank');
   };
 
-  const comingSoonAlert = () => {
-    alert("This feature is coming soon!");
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Animation Variants
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
@@ -46,7 +48,7 @@ const StreetDoctorLanding = () => {
           <span className="text-xl font-bold tracking-tight">Street Doctor</span>
         </div>
         <div className="hidden md:flex gap-8 font-medium text-slate-600">
-          {["How it Works", "AI Engine", "Join"].map((item) => (
+          {["Features", "How it Works", "AI Engine", "Join"].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="hover:text-emerald-600 transition-colors">
               {item}
             </a>
@@ -78,10 +80,10 @@ const StreetDoctorLanding = () => {
             AI-powered triage, real-time smartwatch monitoring, and specialist matching within 50km. All through a single chat.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button onClick={comingSoonAlert} className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-transform hover:-translate-y-1 shadow-xl shadow-emerald-200">
+            <button onClick={openWhatsApp} className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition-transform hover:-translate-y-1 shadow-xl shadow-emerald-200">
               Start a Consultation
             </button>
-            <button onClick={comingSoonAlert} className="bg-white border-2 border-slate-200 hover:border-emerald-600 px-8 py-4 rounded-xl font-bold text-lg transition-colors">
+            <button onClick={() => scrollToSection('doctors-cta')} className="bg-white border-2 border-slate-200 hover:border-emerald-600 px-8 py-4 rounded-xl font-bold text-lg transition-colors">
               I am a Doctor
             </button>
           </div>
@@ -196,8 +198,144 @@ const StreetDoctorLanding = () => {
         </motion.div>
       </section>
 
+      {/* Patient & Family Features */}
+      <section id="features" className="py-24 px-6 max-w-7xl mx-auto bg-white">
+        <div className="text-center mb-16">
+          <div className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wide text-emerald-700 uppercase bg-emerald-100 rounded-full">
+            Everything You Need
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-800">Built for Patients & Families</h2>
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            From everyday check-ins to life-saving emergencies — Street Doctor wraps every layer of your care in a single WhatsApp conversation.
+          </p>
+        </div>
+
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {[
+            {
+              icon: <AlertTriangle className="text-red-500" size={24} />,
+              title: "Wearable SOS Wriggle Alert",
+              desc: "Shake your Android watch 3 times within 2.5 seconds to instantly trigger emergency WhatsApp alerts to family and your doctor with your current GPS coordinates."
+            },
+            {
+              icon: <Navigation className="text-emerald-600" size={24} />,
+              title: "Live Family Tracking Page",
+              desc: "Every emergency message includes a one-click link to a live tracking page with real-time GPS trail, heart-rate vitals bar, assigned-doctor call and WhatsApp shortcuts, and Google Maps deep link."
+            },
+            {
+              icon: <MessageSquare className="text-green-600" size={24} />,
+              title: "WhatsApp-Based Triage & Chat",
+              desc: "No app install required for patients. Describe symptoms in plain language on WhatsApp and the AI-driven state machine guides you through triage, doctor matching, booking, payment and follow-up."
+            },
+            {
+              icon: <Brain className="text-purple-600" size={24} />,
+              title: "AI Severity Triage Engine",
+              desc: "Our NLU classifier ranks every case as Critical, Urgent, High or Routine within seconds, surfacing the highest-risk patients first to the right specialists."
+            },
+            {
+              icon: <MapPin className="text-teal-600" size={24} />,
+              title: "50km Specialist Matching",
+              desc: "Geospatial lookup matches you with verified doctors, clinics and hospitals within a 50 kilometer radius, ranked by availability, specialty and patient reviews."
+            },
+            {
+              icon: <CreditCard className="text-blue-600" size={24} />,
+              title: "Paystack Chat-Based Payments",
+              desc: "Secure Paystack checkout is embedded directly in the WhatsApp conversation — pay consultation fees, prescriptions and hospital deposits without leaving the thread."
+            }
+          ].map((feature, i) => (
+            <motion.div
+              key={i}
+              variants={fadeInUp}
+              whileHover={{ y: -6 }}
+              className="p-7 bg-[#f8faf9] rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all"
+            >
+              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-5 border border-slate-100">
+                {feature.icon}
+              </div>
+              <h3 className="font-bold text-xl mb-2 text-slate-800">{feature.title}</h3>
+              <p className="text-slate-500 text-sm leading-relaxed">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
+
+      {/* Doctor & Hospital Features */}
+      <section id="provider-features" className="py-24 px-6 bg-gradient-to-b from-emerald-50/60 to-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wide text-white uppercase bg-emerald-700 rounded-full">
+              Provider Toolkit
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-800">Built for Doctors & Hospitals</h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Turn your practice into a digital-first clinic — reduce readmissions, automate your paperwork, and monetize every interaction on your own terms.
+            </p>
+          </div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {[
+              {
+                icon: <Users className="text-emerald-600" size={24} />,
+                title: "Family Account Linking",
+                desc: "Parents, spouses and caregivers can link family members under a single WhatsApp account, switch between profiles, receive shared emergency alerts, and manage dependant prescriptions."
+              },
+              {
+                icon: <Building2 className="text-slate-700" size={24} />,
+                title: "Hospital Administration",
+                desc: "Facility dashboards manage bed capacity, requisition flows, pharmacy stock, staff rosters and post-op wards with automated WhatsApp nudges when patients are ready for discharge."
+              },
+              {
+                icon: <Calendar className="text-indigo-600" size={24} />,
+                title: "Appointment Scheduling",
+                desc: "Patients pick real-time slots from the doctor's published calendar. Automated WhatsApp reminders 24 hours and 1 hour before cut no-show rates by 40%."
+              },
+              {
+                icon: <Pill className="text-pink-600" size={24} />,
+                title: "Prescriptions & Pharmacy Requisitions",
+                desc: "Doctors sign digital prescriptions with auto-generated generic + brand alternatives, dose schedules, and one-tap pharmacy courier requisitions for home delivery."
+              },
+              {
+                icon: <ClipboardList className="text-amber-600" size={24} />,
+                title: "AI Clinical Documentation",
+                desc: "Every WhatsApp consultation is automatically summarized into structured SOAP notes with ICD-10 coding suggestions, ready for export to your EMR at the end of the session."
+              },
+              {
+                icon: <DollarSign className="text-green-700" size={24} />,
+                title: "Custom Fee Schedules",
+                desc: "Doctors set their own consultation, follow-up, video-call and emergency-call rates per patient cohort. Settlements disburse via Paystack on a weekly or on-demand cadence."
+              }
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                variants={fadeInUp}
+                whileHover={{ y: -6 }}
+                className="p-7 bg-white rounded-2xl border border-emerald-100/70 shadow-sm hover:shadow-xl transition-all"
+              >
+                <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-5 border border-emerald-100">
+                  {feature.icon}
+                </div>
+                <h3 className="font-bold text-xl mb-2 text-slate-800">{feature.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* AI Deep Dive Section */}
-      <section id="features" className="py-24 bg-slate-900 text-white overflow-hidden">
+      <section id="ai-engine" className="py-24 bg-slate-900 text-white overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
@@ -267,7 +405,7 @@ const StreetDoctorLanding = () => {
           <h2 className="text-4xl font-bold mb-4">Join the Care Network</h2>
           <p className="text-slate-500">Empowering health professionals with real-time data.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div id="doctors-cta" className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <motion.div
             whileHover={{ y: -10 }}
             className="p-10 bg-white rounded-[2.5rem] text-left border border-slate-100 shadow-xl shadow-slate-200/50"
@@ -277,7 +415,7 @@ const StreetDoctorLanding = () => {
             </div>
             <h3 className="font-bold text-2xl mb-4 text-slate-800">For Doctors</h3>
             <p className="text-slate-600 mb-8 leading-relaxed">Access live patient vitals, set your own fees, and let AI handle your clinical documentation.</p>
-            <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-emerald-600 hover:gap-4 transition-all">
+            <button onClick={openWhatsApp} className="flex items-center gap-2 font-bold text-emerald-600 hover:gap-4 transition-all">
               Register Practice <ChevronRight size={20} />
             </button>
           </motion.div>
@@ -291,7 +429,7 @@ const StreetDoctorLanding = () => {
             </div>
             <h3 className="font-bold text-2xl mb-4 text-white">For Hospitals</h3>
             <p className="text-slate-400 mb-8 leading-relaxed">Remote post-op monitoring to reduce readmissions and automate emergency triage flows.</p>
-            <button onClick={comingSoonAlert} className="flex items-center gap-2 font-bold text-emerald-400 hover:gap-4 transition-all">
+            <button onClick={openWhatsApp} className="flex items-center gap-2 font-bold text-emerald-400 hover:gap-4 transition-all">
               Onboard Facility <ChevronRight size={20} />
             </button>
           </motion.div>
